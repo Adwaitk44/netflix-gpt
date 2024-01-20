@@ -1,39 +1,60 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {auth} from "../utils/firebase";
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { onAuthStateChanged } from 'firebase/auth';
+import { addUser, removeUser } from '../utils/userSlice';
+import { LOGO, USER_LOGO } from '../utils/constant';
 
 const Header = () => {
   const navigate=useNavigate();
+  const dispatch=useDispatch();
   const user=useSelector(store=>store.user);
-  console.log(user);
+  //console.log(user);
 
   const HandleSignOut=()=>{
     signOut(auth).then(() => {
       // Sign-out successful.
-      console.log(user);
-      navigate("/");
+      //console.log(user);
     }).catch((error) => {
       // An error happened.
       navigate("/error");
     });
   }
 
+  useEffect(() => {
+     const unsubscribe=onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(addUser({uid, email, displayName, photoURL }));
+        navigate("/browse");
+      } 
+      else {
+        // User is signed out
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    //unsubscribe called when componenet unmounts
+    return()=>unsubscribe();
+  },[]);
+
   return (
     <div className="absolute w-screen px-8 py-2 bg-black z-10 bg-opacity-75 flex justify-between items-center">
       <img
         className="w-44"
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+        src={LOGO}
         alt="logo"
       />
       {
         user && (
           <div className="flex items-center">
           <img
-            className="w-16 h-16 p-4" // Adjust the size as needed
+            className="w-16 h-16 p-4"
             alt="usericon"
-            src="https://occ-0-4608-2164.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABXz4LMjJFidX8MxhZ6qro8PBTjmHbxlaLAbk45W1DXbKsAIOwyHQPiMAuUnF1G24CLi7InJHK4Ge4jkXul1xIW49Dr5S7fc.png?r=e6e"
+            src={USER_LOGO}
            
           />
           <button onClick={HandleSignOut} className="ml-2 font-bold text-white text-lg">SignOut</button>
