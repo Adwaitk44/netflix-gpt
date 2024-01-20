@@ -3,6 +3,22 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* .scrollbar {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    height: 500px;
+  }
+  
+  .scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+   */
+
+   
+  
+
+
+
 
 /* @tailwind base;
 @tailwind components;

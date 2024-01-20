@@ -13,7 +13,7 @@
 -unscribe to the oAuthStateChange callback
 -Add hardcoded values to constant files
 -register for tmdb api
--create a new app and get access tioken
+-create a new app and get access token
 -get data tmdb now playing movies
 -create custom hooks for nowplaying movies
 -updated store with movies data
@@ -22,4 +22,9 @@
 -update store with trailer video data
 -embeded the youtube video
 -tailwind to make it look awsome(maincontainer)
--
+-build secondary component
+-build movie list
+-build movie card
+-TMDB image cdn url
+-made browse page amazing
+-usePopular movies custom hook
