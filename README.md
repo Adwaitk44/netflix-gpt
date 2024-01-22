@@ -28,3 +28,10 @@
 -TMDB image cdn url
 -made browse page amazing
 -usePopular movies custom hook
+-useNowPlaying Movies custom hooks
+-useTopRated Movies custom hooks
+-GPT search feature
+-Gpt search page
+-GPT search bar
+-Added multi-language feature in our App
+-Integrating Gpt api(Get open Ai key)

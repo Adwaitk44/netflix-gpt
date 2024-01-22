@@ -16,7 +16,7 @@ const useMovieTrailer = ( movieId ) => {
         //   API_OPTIONS
         );
         const json = await data.json();
-        console.log("video:", json);
+        //console.log("video:", json);
   
         // Check if 'results' is present and not undefined
         const filterData = json.results?.filter((video) => video.type === "Trailer");
@@ -24,7 +24,7 @@ const useMovieTrailer = ( movieId ) => {
         // Check if 'filterData' is not undefined and has length
         const trailer = filterData?.length ? filterData[0] : null;
   
-        console.log("trailer:", trailer);
+        //console.log("trailer:", trailer);
   
         if (trailer) {
           dispatch(addTrailerVideo(trailer));
