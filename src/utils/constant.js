@@ -18,3 +18,9 @@ export const SUPPORTED_LANGUAGES=[
 {identifier:"marathi",name:"marathi"}
 
 ]
+
+// export const OPEN_AI_KEY='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';
+// export const OPEN_AI_KEY='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';  //tushar 
+// export const OPEN_AI_KEY="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"; // adwait mitaoe
+export const OPEN_AI_KEY="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";
+
