@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constant";
 import { addTrailerVideo } from "../utils/movieSlice";
 import { useEffect } from "react";
 const useMovieTrailer = ( movieId ) => {
    // console.log(movieId);
     const dispatch = useDispatch();
+    const trailerVideo=useSelector(store=>store.movies.trailerVideo);
   
     const getMovieVideos = async () => {
       try {
@@ -34,7 +35,7 @@ const useMovieTrailer = ( movieId ) => {
       }
     };
     useEffect(() => {
-      getMovieVideos();
+      !trailerVideo && getMovieVideos();
     }, [movieId]); // Include movieId in the dependency array to run the effect when it changes
   };
   export default useMovieTrailer;
